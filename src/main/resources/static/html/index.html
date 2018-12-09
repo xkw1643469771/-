@@ -3,8 +3,32 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="/vue/vue.js"></script>
+<script type="text/javascript">
+	window.onload = function() {
+		var a = new Vue({
+			el : '#con',
+			data : {
+				a : 'Vue',
+				b : '123123'
+			},
+			methods : {
+				print : function(){
+					return this;
+				}
+			}
+		});
+		a.a = 'sdfsadf';
+		console.info(a);
+		console.info(a.data);
+		console.info(a.$data.a);
+	}
+</script>
 </head>
 <body>
+	<div id="con">
+		<span>Hello {{a}}</span> <span>Hello {{b}}</span>
+	</div>
 
 </body>
 </html>
