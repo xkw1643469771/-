@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="/js/jquery/jquery-3.3.1.js"></script>
+<script type="text/javascript" src="/js/vue/vue.js"></script>
+<script type="text/javascript" src="/html/utils/test1.js"></script>
+</head>
+<body>
+	<div id="urlSend">
+		<input id="urlSend" type="text" v-model="url"> <input
+			type="button" value="发送" @click="send">
+		<iframe id="ifrome1" v-bind:src="url"></iframe>
+	</div>
+</body>
+</html>
