@@ -8,9 +8,12 @@
 		
 		<!-- 生成po实现序列化 -->
 		<plugin type="org.mybatis.generator.plugins.SerializablePlugin" />
+		<!-- 如果文件存在就覆盖 -->
 		<plugin type="com.test.mybatis.generator.custom.OverIsMergeablePlugin" />
-		
-		<commentGenerator>
+		<!-- 写着玩的, 不要当真 -->
+		<plugin type="com.test.mybatis.generator.custom.PropertiesPlugin" />
+
+		<commentGenerator type="com.test.mybatis.generator.custom.CustomComment">
 			<!-- 是否去除自动生成的注释 true：是 ： false:否 -->
 			<property name="suppressAllComments" value="true" />
 		</commentGenerator>
