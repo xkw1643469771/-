@@ -39,6 +39,7 @@ function executionPlanOperation(){
     btnNext.after(btnBottom);
     var trs = tab.find("tr");
     var arr = new Array();
+    var tds = new Array();
     for(var i = 1; i < trs.length; i++){
         var td = $(trs[i]).find("td:eq(1)");
         var str = td.text();
@@ -51,7 +52,40 @@ function executionPlanOperation(){
                 break;
             }
         }
-        var level = (sum - 2) / 3;
-        console.info(level,$.trim(str));
+        var level = (sum - 2) / 3 * 10;
+        arr[level] = arr[level] ? arr[level] - 1 : level;
+        tds[arr[level]] = td;
     }
+    var tdsArr = new Array();
+    var idx = 0;
+    for(var td in tds)
+        tdsArr[idx++] = tds[td];
+    var idx = tdsArr.length-1;
+    tdsArr[idx].css("color","red");
+    btnNext.click(function(){
+        if(idx >= tdsArr.length - 1)
+            return;
+        var oldTd = tdsArr[idx];
+        idx++;
+        var td = tdsArr[idx];
+        if(td){
+            try{
+                oldTd.css("color","black");
+            }catch(e){}
+            td.css("color","red");
+        }
+    });
+    btnUp.click(function(){
+        if(idx<=0)
+            return;
+        var oldTd = tdsArr[idx];
+        idx--;
+        var td = tdsArr[idx];
+        if(td){
+            try{
+                oldTd.css("color","black");
+            }catch(e){}
+            td.css("color","red");
+        }
+    });
 }
