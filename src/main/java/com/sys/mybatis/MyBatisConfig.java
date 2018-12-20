@@ -10,7 +10,7 @@ import org.springframework.context.annotation.ImportResource;
  * mybatis 配置
  */
 @MapperScan("com.sys.mybatis.dao")//扫描mapper接口
-@Configuration
+@Configuration//加载配置
 public class MyBatisConfig {
 
 }
