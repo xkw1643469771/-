@@ -4,6 +4,9 @@ $(function(){
     btn.addEventListener("click",fun1,true);//事件在捕获阶段执行
     btn.addEventListener("click",fun2);//添加事件另一个事件
     btn.removeEventListener("click",fun1);//移除冒泡阶段的事件
+
+    $('[data-toggle="popover"]').popover();
+
 });
 
 function fun1(){
