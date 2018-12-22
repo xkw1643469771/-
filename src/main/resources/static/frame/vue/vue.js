@@ -4757,7 +4757,7 @@
         Ctor.superOptions = superOptions;
         // check if there are any late-modified/attached options (#4976)
         var modifiedOptions = resolveModifiedOptions(Ctor);
-        // update base extend options
+        // update thymeleaf extend options
         if (modifiedOptions) {
           extend(Ctor.extendOptions, modifiedOptions);
         }
@@ -5140,7 +5140,7 @@
       Vue.options[type + 's'] = Object.create(null);
     });
 
-    // this is used to identify the "base" constructor to extend all plain-object
+    // this is used to identify the "thymeleaf" constructor to extend all plain-object
     // components with in Weex's multi-instance scenarios.
     Vue.options._base = Vue;
 
@@ -5303,7 +5303,7 @@
   };
 
   var isHTMLTag = makeMap(
-    'html,body,base,head,link,meta,style,title,' +
+    'html,body,thymeleaf,head,link,meta,style,title,' +
     'address,article,aside,footer,header,h1,h2,h3,h4,h5,h6,hgroup,nav,section,' +
     'div,dd,dl,dt,figcaption,figure,picture,hr,img,li,main,ol,p,pre,ul,' +
     'a,b,abbr,bdi,bdo,br,cite,code,data,dfn,em,i,kbd,mark,q,rp,rt,rtc,ruby,' +
@@ -6854,7 +6854,7 @@
   }
 
   /**
-   * Parse a v-model expression into a base path and a final key segment.
+   * Parse a v-model expression into a thymeleaf path and a final key segment.
    * Handles both dot-path and possible square brackets.
    *
    * Possible cases:
@@ -8819,7 +8819,7 @@
   /*  */
 
   var isUnaryTag = makeMap(
-    'area,base,br,col,embed,frame,hr,img,input,isindex,keygen,' +
+    'area,thymeleaf,br,col,embed,frame,hr,img,input,isindex,keygen,' +
     'link,meta,param,source,track,wbr'
   );
 
@@ -8832,7 +8832,7 @@
   // HTML5 tags https://html.spec.whatwg.org/multipage/indices.html#elements-3
   // Phrasing Content https://html.spec.whatwg.org/multipage/dom.html#phrasing-content
   var isNonPhrasingTag = makeMap(
-    'address,article,aside,base,blockquote,body,caption,col,colgroup,dd,' +
+    'address,article,aside,thymeleaf,blockquote,body,caption,col,colgroup,dd,' +
     'details,dialog,div,dl,dt,fieldset,figcaption,figure,footer,form,' +
     'h1,h2,h3,h4,h5,h6,head,header,hgroup,hr,html,legend,li,menuitem,meta,' +
     'optgroup,option,param,rp,rt,source,style,summary,tbody,td,tfoot,th,thead,' +

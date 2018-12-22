@@ -1,11 +1,35 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<link rel="stylesheet" href="/frame/bootstart4/css/bootstrap.css">
+	<script src="/frame/jquery/jquery-3.3.1.js"></script>
+	<script src="/frame/bootstart4/js/bootstrap.js"></script>
+	<script src=" /frame/vue/vue.js"></script>
+	<script src="/html/index.js"></script>
 </head>
-<body>
-	<h3>工具</h3>
-	<a href="/html/utils/test1.html">工具</a>
+<body class="container-fluid">
+
+<!--<div class="jumbotron text-center" style="margin-bottom: 0px;">
+	<h1>这个应该算是目录吧!</h1>
+</div>-->
+
+<div id="catalog" class="breadcrumb bg-dark text-white">
+	<a class="breadcrumb-item text-white" style="cursor: pointer;"
+	   v-for="cl in cls" @click="catalogClick(cl)">
+		{{cl.name}}
+	</a>
+</div>
+
+<div id="htmlContent" style="width: 15%;" class="navbar bg-light card">
+	<a style="cursor: pointer;" class="nav-link nav-item navbar-nav"
+	   v-for="item in items" @click="itemClick(item)">
+		{{item.name}}
+	</a>
+</div>
+
+<iframe id="winDiv" class="card"></iframe>
+
 </body>
 </html>
