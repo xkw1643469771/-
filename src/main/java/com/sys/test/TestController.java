@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("test")
 public class TestController {
 
-	@RequestMapping("")
+	@RequestMapping("test1")
 	public String test() {
 		return "index";
 	}
