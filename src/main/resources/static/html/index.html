@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<title>Html主页</title>
-	<link rel="stylesheet" href="/frame/bootstart4/css/bootstrap.css">
-	<script src="/frame/jquery/jquery-3.3.1.js"></script>
-	<script src="/frame/bootstart4/js/bootstrap.js"></script>
-	<script src=" /frame/vue/vue.js"></script>
-	<script src="/html/index.js"></script>
+    <meta charset="UTF-8">
+    <!-- 解决AJAX跨域访问, 不写只能使用localhost -->
+    <meta http-equiv="Access-Control-Allow-Origin" content="http://192.168.1.101:9999/">
+    <title>Html主页</title>
+    <link rel="stylesheet" href="/frame/bootstart4/css/bootstrap.css">
+    <script src="/frame/jquery/jquery-3.3.1.js"></script>
+    <script src="/frame/bootstart4/js/bootstrap.js"></script>
+    <script src=" /frame/vue/vue.js"></script>
+    <script src="/html/index.js"></script>
 </head>
 <body class="container-fluid">
 
@@ -16,17 +18,17 @@
 </div>-->
 
 <div id="catalog" class="breadcrumb bg-dark text-white">
-	<a class="breadcrumb-item text-white" style="cursor: pointer;"
-	   v-for="cl in cls" @click="catalogClick(cl)">
-		{{cl.name}}
-	</a>
+    <a class="breadcrumb-item text-white" style="cursor: pointer;"
+       v-for="cl in cls" @click="catalogClick(cl)">
+        {{cl.name}}
+    </a>
 </div>
 
-<div id="htmlContent" style="width: 15%;" class="navbar bg-light card">
-	<a style="cursor: pointer;" class="nav-link nav-item navbar-nav"
-	   v-for="item in items" @click="itemClick(item)">
-		{{item.name}}
-	</a>
+<div id="htmlContent" style="width: 120px;" class="navbar bg-light card">
+    <a style="cursor: pointer;" class="nav-link nav-item navbar-nav"
+       v-for="item in items" @click="itemClick(item)">
+        {{item.name}}
+    </a>
 </div>
 
 <iframe id="winDiv" class="card"></iframe>

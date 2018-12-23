@@ -28,7 +28,7 @@ $(function(){
         }
     });
     var getCatalog = function (parentPath){
-        $.get("http://localhost:9999/html/catalog?parentPath=" + parentPath, function(data){
+        $.get("/html/catalog?parentPath=" + parentPath, function(data){
             catalog.cls = data.parent;
             htmlContent.items = data.items;
         });

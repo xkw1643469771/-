@@ -79,12 +79,19 @@ public class HtmlService {
         File[] files = currFile.listFiles();
         List<Item> items = new ArrayList<>();
         for(File file : files){
+            if(!file.getName().endsWith(".html") && !file.isDirectory())
+                continue;
+            if(file.getAbsolutePath().endsWith("static\\html\\index.html"))
+                continue;
             String path = file.getAbsolutePath();
             Item item = new Item();
             item.setItemIsFolder(file.isDirectory());
             int baseLength = staticFile.getAbsolutePath().length();
             item.setProjectPath(getPathBaseStatic(path));
-            item.setName(file.getName());
+            if(file.isDirectory())
+                item.setName("<" + file.getName() + ">");
+            else
+                item.setName(file.getName().substring(0, file.getName().length() - 5));
             items.add(item);
         }
         return items;
