@@ -20,7 +20,6 @@ $(function(){
                 if(item.itemIsFolder)
                     getCatalog(item.projectPath);
                 else{
-                    //resetWinDivPosition();
                     $("#winDiv").attr("src",item.projectPath);
                 }
 
@@ -30,12 +29,25 @@ $(function(){
     var getCatalog = function (parentPath){
         $.get("/html/catalog?parentPath=" + parentPath, function(data){
             catalog.cls = data.parent;
-            htmlContent.items = data.items;
+            if(data.items.length == 0)
+                htmlContent.items = [{name:"empty"}]
+            else
+                htmlContent.items = data.items;
         });
     }
     getCatalog("/html");
-    setInterval(resetWinDivPosition, 100);
+    resetWinDiv();
 })
+
+function resetWinDiv(){
+    //setInterval(resetWinDivPosition, 100);
+    var htmlContent = document.getElementById("htmlContent");
+    var MutationObserver = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver;
+    new MutationObserver(function(){
+        resetWinDivPosition();
+    }).observe(htmlContent, {childList : true});
+    window.onresize = resetWinDivPosition;
+}
 
 function resetWinDivPosition(){
     var htmlContent = document.getElementById("htmlContent");

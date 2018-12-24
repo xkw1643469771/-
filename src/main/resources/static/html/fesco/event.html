@@ -13,13 +13,33 @@
     <script type="text/javascript" src="/html/fesco/event.js"></script>
 
 </head>
-<body class="container">
+<body class="container-fluid">
 
+<h5>事件绑定</h5>
+<div class="container">
     <input type="button" class="btn btn-primary" id="btn" value="点击">
     <ul>
-        <li data-toggle="popover" data-content="弹出框内容">123123</li>
+        <li data-toggle="popover" data-content="弹出框内容">li 标签</li>
     </ul>
+    <button data-toggle="popover" data-content="弹出框内容">button 标签</button>
+    <span data-toggle="popover" data-content="弹出框内容">span 标签</span>
+    <a data-toggle="popover" data-content="弹出框内容">a 标签</a>
+</div>
+<hr>
+<h5>Jquery的bind方法</h5>
+<div>
+    <input id="btnJqueryBind1" type="button" value="方式一">
+    <input id="btnJqueryBind2" type="button" value="方式二">
+</div>
+<hr>
+<h5>监听属性变化</h5>
 
+<div>
+    <div id="monitorAttrChange1">
+        <div id="monitorAttrChangeDiv1"></div>
+    </div>
+    <input id="monitorAttrChangeBtn" type="button" value="点击改变属性">
+</div>
 
 </body>
 </html>
