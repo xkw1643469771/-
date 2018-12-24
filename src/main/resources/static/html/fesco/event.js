@@ -35,16 +35,17 @@ $(function(){
     var MutationObserver = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver;
     var config = {
         attributes: true,//监听属性的增删改
-        attributeFilter : ["value2"],//要监听的属性
+        attributeFilter : ["style","class"],//要监听的属性
         childList: true,//监听子节点的添加或删除
         characterData : true,//监听characterData节点(一个接口)
         subtree : true,//监听子节点属性的增删改
     }
     new MutationObserver(function(mutations){
-        console.info(mutations);
+        console.info(mutations.length);
     }).observe($("#monitorAttrChange1")[0],config);
     $("#monitorAttrChangeBtn").click(function(){
-        $("#monitorAttrChange1").attr("value2","456");
-        $("#monitorAttrChangeDiv1").attr("value2","456");
+        $("#monitorAttrChange1")[0].classList.add("divRed");
+        $("#monitorAttrChange1")[0].setAttribute("class","123");
+        $("#monitorAttrChange1")[0].style.backgroundColor = "red";
     })
 });
