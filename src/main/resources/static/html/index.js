@@ -43,9 +43,7 @@ function resetWinDiv(){
     //setInterval(resetWinDivPosition, 100);
     var htmlContent = document.getElementById("htmlContent");
     var MutationObserver = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver;
-    new MutationObserver(function(){
-        resetWinDivPosition();
-    }).observe(htmlContent, {childList : true});
+    new MutationObserver(resetWinDivPosition).observe(htmlContent, {childList : true});
     window.onresize = resetWinDivPosition;
 }
 
