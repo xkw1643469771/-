@@ -9,34 +9,35 @@ import java.util.Random;
 import java.util.Set;
 
 /**
- *
+ * 将集合中的数据分组, 每次都不能重复
  */
-public class RandomGroup {
+public class RandomGroup<T> {
 
     public Collection collection;
     private int groupNum;//分成几个组
     private int groupCount;//每组最大数量
-    private int number;//第几次
+    private List[][] list;
+    private int index;
     private Random random;
 
-    public static void main(String[] args) {
-        List list = new ArrayList();
-        for (int i = 0; i < 100; i++) {
-            list.add(i);
-        }
-        RandomGroup group = new RandomGroup(list, 4, 25);
+    public RandomGroup(Collection<T> collection, int groupNum){
+        this(collection, groupNum, (int)Math.ceil(Double.valueOf(Double.valueOf(collection.size()))/groupNum));
     }
 
-    public RandomGroup(Collection collection, int groupNum, int groupCount){
+    public RandomGroup(Collection<T> collection, int groupNum, int groupCount){
         this.collection = collection;
         this.groupNum = groupNum;
         this.groupCount = groupCount;
-        this.number = groupNum;
         random = new Random();
+        startGroup();
     }
 
-    public boolean hasGroup(){
-        return this.number > 0;
+    public boolean hasNext(){
+        return index < list.length;
+    }
+
+    public List<T>[] next(){
+        return list[index++];
     }
 
     private void startGroup() {
@@ -44,20 +45,21 @@ public class RandomGroup {
         while(true){
             try{
                 List<Item> items = toItems();
+                int groupNum = this.groupNum;
+                list = new ArrayList[groupNum][];
                 for (int i = 0; i < groupNum; i++) {
                     group(items);
+                    list[i] = print(items);
                 }
                 break;
             }catch (Exception e){
                 err ++;
+                System.out.println("失败次数: " + err);
             }
         }
-        number --;
-        System.out.println("失败次数: " + err);
-
     }
 
-    public void print(List<Item> items){
+    public List[] print(List<Item> items){
         List[] lists = new ArrayList[groupNum];
         for (int i = 0; i < lists.length; i++) {
             lists[i] = new ArrayList<>();
@@ -65,14 +67,7 @@ public class RandomGroup {
         for (int i = 0; i < items.size(); i++) {
             lists[items.get(i).curr].add(items.get(i).obj);
         }
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < groupNum; i++) {
-            String str = i + " " + lists[i].toString();
-            sb.append(str);
-            for (int j = 0; j < 100 - str.length(); j++)
-                sb.append(" ");
-        }
-        System.out.println(sb);
+        return lists;
     }
 
     private List<Item> toItems(){
