@@ -1,4 +1,4 @@
-package com.test.ks;
+package com.test.group;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +14,7 @@ public class RandomGroupTest {
         for (int i = 0; i < 20; i++) {
             us.add(new User(i, String.valueOf(i)));
         }
-        RandomGroup<User> group = new RandomGroup<>(us, 4);
+        RandomGroup<User> group = new RandomGroup<>(us, 4, 4, 100);
         while(group.hasNext()){
             for (List<User> users : group.next()) {
                 System.out.print(users);

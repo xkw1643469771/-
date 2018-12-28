@@ -1,8 +1,10 @@
-package com.test.ks;
+package com.test.group;
+
+import com.sys.util.AssertUtils;
+import com.sys.util.NumUtils;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
@@ -16,18 +18,26 @@ public class RandomGroup<T> {
     public Collection collection;
     private int groupNum;//分成几个组
     private int groupCount;//每组最大数量
+    private int count;//一共分几次
     private List[][] list;
     private int index;
     private Random random;
 
     public RandomGroup(Collection<T> collection, int groupNum){
-        this(collection, groupNum, (int)Math.ceil(Double.valueOf(Double.valueOf(collection.size()))/groupNum));
+        this(collection, groupNum, groupNum);
     }
 
-    public RandomGroup(Collection<T> collection, int groupNum, int groupCount){
+    public RandomGroup(Collection<T> collection, int groupNum, int count){
+        this(collection,groupNum,count,NumUtils.divideReturnCeil(collection.size(), groupNum));
+    }
+
+    public RandomGroup(Collection<T> collection, int groupNum, int count, int groupCount){
+        AssertUtils.isTree(count <= groupNum, "次数太多会卡死");
+        AssertUtils.isTree(groupCount >= NumUtils.divideReturnCeil(collection.size(), groupNum), "人数太少会卡死");
         this.collection = collection;
         this.groupNum = groupNum;
         this.groupCount = groupCount;
+        this.count = count;
         random = new Random();
         startGroup();
     }
@@ -45,9 +55,8 @@ public class RandomGroup<T> {
         while(true){
             try{
                 List<Item> items = toItems();
-                int groupNum = this.groupNum;
-                list = new ArrayList[groupNum][];
-                for (int i = 0; i < groupNum; i++) {
+                list = new ArrayList[count][];
+                for (int i = 0; i < count; i++) {
                     group(items);
                     list[i] = print(items);
                 }
