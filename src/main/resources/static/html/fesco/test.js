@@ -16,4 +16,15 @@ $(function(){
     $("#disabledFromSubmit").click(function(){
         $("#disabledFrom").submit();
     });
+
+    myflexbox();
 });
+
+function myflexbox(){
+    var flex = $("#myFlexbox");
+    var input = $("<input type='text'>");
+    var divStr = "<div style='background-color: #0c5460; width: 20px; height: 20px; position: absolute;'></div>";
+    var div = $(divStr);
+    flex.append(input);
+    flex.append(div);
+}

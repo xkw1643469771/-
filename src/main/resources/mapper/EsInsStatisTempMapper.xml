@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sys.mybatis.dao.EsInsStatisTempMapper">
+  <resultMap id="BaseResultMap" type="com.sys.mybatis.po.EsInsStatisTemp">
+    <id column="ES_INS_STATIS_TEMP_ID" jdbcType="DECIMAL" property="esInsStatisTempId" />
+    <result column="CUST_INS_ID" jdbcType="DECIMAL" property="custInsId" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    ES_INS_STATIS_TEMP_ID, CUST_INS_ID
+  </sql>
+  <select id="selectByExample" parameterType="com.sys.mybatis.po.EsInsStatisTempExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ES_INS_STATIS_TEMP
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ES_INS_STATIS_TEMP
+    where ES_INS_STATIS_TEMP_ID = #{esInsStatisTempId,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from ES_INS_STATIS_TEMP
+    where ES_INS_STATIS_TEMP_ID = #{esInsStatisTempId,jdbcType=DECIMAL}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.sys.mybatis.po.EsInsStatisTempExample">
+    delete from ES_INS_STATIS_TEMP
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.sys.mybatis.po.EsInsStatisTemp">
+    insert into ES_INS_STATIS_TEMP (ES_INS_STATIS_TEMP_ID, CUST_INS_ID)
+    values (#{esInsStatisTempId,jdbcType=DECIMAL}, #{custInsId,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sys.mybatis.po.EsInsStatisTemp">
+    insert into ES_INS_STATIS_TEMP
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="esInsStatisTempId != null">
+        ES_INS_STATIS_TEMP_ID,
+      </if>
+      <if test="custInsId != null">
+        CUST_INS_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="esInsStatisTempId != null">
+        #{esInsStatisTempId,jdbcType=DECIMAL},
+      </if>
+      <if test="custInsId != null">
+        #{custInsId,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.sys.mybatis.po.EsInsStatisTempExample" resultType="java.lang.Long">
+    select count(*) from ES_INS_STATIS_TEMP
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update ES_INS_STATIS_TEMP
+    <set>
+      <if test="record.esInsStatisTempId != null">
+        ES_INS_STATIS_TEMP_ID = #{record.esInsStatisTempId,jdbcType=DECIMAL},
+      </if>
+      <if test="record.custInsId != null">
+        CUST_INS_ID = #{record.custInsId,jdbcType=DECIMAL},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update ES_INS_STATIS_TEMP
+    set ES_INS_STATIS_TEMP_ID = #{record.esInsStatisTempId,jdbcType=DECIMAL},
+      CUST_INS_ID = #{record.custInsId,jdbcType=DECIMAL}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sys.mybatis.po.EsInsStatisTemp">
+    update ES_INS_STATIS_TEMP
+    <set>
+      <if test="custInsId != null">
+        CUST_INS_ID = #{custInsId,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where ES_INS_STATIS_TEMP_ID = #{esInsStatisTempId,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sys.mybatis.po.EsInsStatisTemp">
+    update ES_INS_STATIS_TEMP
+    set CUST_INS_ID = #{custInsId,jdbcType=DECIMAL}
+    where ES_INS_STATIS_TEMP_ID = #{esInsStatisTempId,jdbcType=DECIMAL}
+  </update>
+</mapper>
