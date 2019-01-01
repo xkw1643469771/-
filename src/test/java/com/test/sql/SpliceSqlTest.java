@@ -11,7 +11,15 @@ public class SpliceSqlTest {
         StringBuilder sb = new StringBuilder();
         User user = new User();
         user = new UserComp();
-        SqlAppend.appendSql(sb, user);
+        append(sb, user);
+        System.out.println(sb);
+    }
+
+    public static void append(Serializable ser, User user){
+        SqlAppend sql = SqlAppendFactory.createSqlAppend(ser);
+        if(user != null){
+            sql.append("REC.UTIL = 123");
+        }
     }
 
 }

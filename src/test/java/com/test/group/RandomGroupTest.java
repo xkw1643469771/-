@@ -14,7 +14,7 @@ public class RandomGroupTest {
         for (int i = 0; i < 20; i++) {
             us.add(new User(i, String.valueOf(i)));
         }
-        RandomGroup<User> group = new RandomGroup<>(us, 4, 4, 100);
+        RandomGroup<User> group = new RandomGroup<>(us, 4, 4, 5);
         while(group.hasNext()){
             for (List<User> users : group.next()) {
                 System.out.print(users);

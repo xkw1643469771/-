@@ -11,8 +11,9 @@ public class SqlAppendBuilder implements SqlAppend{
         this.sb = sb;
     }
 
-    public void append(Object obj) {
+    public SqlAppend append(Object obj) {
         sb.append(obj);
+        return this;
     }
 
 }

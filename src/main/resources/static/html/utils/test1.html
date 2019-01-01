@@ -1,25 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<script type="text/javascript" src="/js/jquery/jquery-3.3.1.js"></script>
-<script type="text/javascript" src="/js/vue/vue.js"></script>
-<script type="text/javascript" src="/html/utils/test1.js"></script>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script type="text/javascript" src="/js/jquery/jquery-3.3.1.js"></script>
+	<script type="text/javascript" src="/js/vue/vue.js"></script>
+	<script type="text/javascript" src="/html/utils/test1.js"></script>
 </head>
 <body>
-    <!-- 测试iframe加载本地文件 -->
-	<div id="urlSend">
-		<input type="text" v-model="url"> <input
-			type="button" value="发送" @click="send">
-		<iframe id="ifrome1" v-bind:src="url"></iframe>
-	</div>
+<!-- 测试iframe加载本地文件 -->
+<div id="urlSend">
+	<input type="text" v-model="url"> <input
+		type="button" value="发送" @click="send">
+	<iframe id="ifrome1" v-bind:src="url"></iframe>
+</div>
 
-	<!-- 进入页面默认获得焦点 -->
-	<input id="input1" type="text" >
-	<input id="input2" type="text" >
+<!-- 进入页面默认获得焦点 -->
+<input id="input1" type="text" >
+<input id="input2" type="text" >
 
-	<!-- 模拟点击 -->
-	<input id="input3" type="button" value="点击" onclick="input3Click()">
+<!-- 模拟点击 -->
+<input id="input3" type="button" value="点击" onclick="input3Click()">
+
+<!-- 上传文件 -->
+<form action="localhost:8888" method="post" enctype="multipart/form-data">
+	<input type="file" name="file" value="file">
+	<input type="submit" value="submit">
+</form>
+
 </body>
 </html>

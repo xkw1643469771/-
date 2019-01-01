@@ -48,25 +48,27 @@ public class SocketServer {
 
     public void execute() throws IOException {
         selector.select();
-        //Set<SelectionKey> keys = selector.selectedKeys();
         Iterator<SelectionKey> iterator = selector.selectedKeys().iterator();
         while(iterator.hasNext()){
             SelectionKey key = iterator.next();
             iterator.remove();
-            if(key.isValid())
-                if(key.isAcceptable())
+            if(key.isValid()) {
+                if (key.isAcceptable())
                     accept(key);
-                else if(key.isWritable())
+                else if (key.isWritable())
                     write(key);
-                else if(key.isReadable())
+                else if (key.isReadable())
                     read(key);
-                else if(key.isConnectable())
+                else if (key.isConnectable())
                     connect(key);
+            }else{
+                System.out.println("无效");
+            }
         }
     }
 
     public void connect(SelectionKey key) {
-
+        System.out.println("connect");
     }
 
     public void accept(SelectionKey key) throws IOException {
@@ -74,9 +76,11 @@ public class SocketServer {
         SocketChannel sc = ssc.accept();
         sc.configureBlocking(false);
         sc.register(selector, SelectionKey.OP_READ);
+        System.out.println("accept");
     }
 
     public void read(SelectionKey key) throws IOException {
+        System.out.println("read");
         SocketChannel sc = (SocketChannel) key.channel();
         ByteBuffer byteBuffer = ByteBuffer.allocate(64);
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
@@ -102,9 +106,9 @@ public class SocketServer {
     }
 
     public void write(SelectionKey key) throws IOException {
+        System.out.println("write");
         SocketChannel sc = (SocketChannel) key.channel();
         Object o = key.attachment();
-        System.out.println(o);
         sc.write(ByteBuffer.wrap(o.toString().getBytes()));
         sc.register(selector, SelectionKey.OP_READ);
     }
