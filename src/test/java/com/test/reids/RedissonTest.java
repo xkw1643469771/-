@@ -1,23 +1,29 @@
 package com.test.reids;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.redisson.Redisson;
+import org.redisson.api.RBucket;
+import org.redisson.api.RLock;
+import org.redisson.api.RMapCache;
 import org.redisson.api.RedissonClient;
 import org.redisson.config.Config;
+
+import java.util.concurrent.TimeUnit;
 
 /**
  *
  */
-public class RedissonTest {
+public abstract class RedissonTest{
 
-    // 纯手动连接Redis
-    @Test
-    public void redissonJavaConnection(){
+    RedissonClient redissonClient;
+
+    @Before
+    public void initRedission(){
         Config config = new Config();
         config.useSingleServer().setAddress("redis://192.168.1.202:6379");
-        RedissonClient redissonClient = Redisson.create(config);
+        config.useSingleServer().setDatabase(15);
+        redissonClient = Redisson.create(config);
     }
-
-
 
 }
