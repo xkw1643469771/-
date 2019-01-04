@@ -66,6 +66,14 @@
 			<version>2.4.1</version>
 			<scope>test</scope>
 		</dependency>
+		<!-- Java数据库 H2 -->
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<version>1.4.197</version>
+			<scope>test</scope>
+		</dependency>
+
 
 		<!-- 热部署工具 -->
 		<dependency>
