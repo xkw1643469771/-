@@ -1,4 +1,4 @@
-package com.test.sql;
+package com.test.database.sql.append;
 
 import java.io.Serializable;
 

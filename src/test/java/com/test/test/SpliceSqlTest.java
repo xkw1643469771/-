@@ -1,7 +1,6 @@
 package com.test.test;
 
 import com.sys.util.TimeUtils;
-import com.test.sql.User;
 
 import java.util.HashMap;
 import java.util.Map;
